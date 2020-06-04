@@ -1,5 +1,5 @@
 import * as mysql from 'mysql';
-import Blogs from './blog';
+import Chirps from './chirps';
 // export const Connection = mysql.createConnection({
 
 // })
@@ -11,14 +11,14 @@ const pool = mysql.createPool({
     database: 'chirpr'
 })
 
-console.log(pool);
-pool.query('select * from chirps', (err, results) => {
-    if (err) {
-        console.log(err)
-    } else {
-        console.log(results)
-    }
-})
+
+// pool.query('select * from chirps', (err, results) => {
+//     if (err) {
+//         console.log(err)
+//     } else {
+//         console.log(results)
+//     }
+// })
 
 export const Query = (query: string, values?: Array<string | number>) => {
     return new Promise<Array<any>>((resolve, reject) => {
@@ -29,5 +29,5 @@ export const Query = (query: string, values?: Array<string | number>) => {
     });
 };
 export default {
-    Blogs
+    Chirps
 }
