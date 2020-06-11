@@ -7,4 +7,4 @@ class ChirpEdit extends React.Component<ChirpEditProps>{
 
 interface ChirpEditProps{}
 
-export default ChirpEditProps;
+export default ChirpEdit;
