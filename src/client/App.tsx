@@ -21,7 +21,7 @@ class App extends React.Component<AppProps> {
 
 					</Switch>
 				</Container>
-			</BrowserRouter >
+			</BrowserRouter>
 
 
 		);
