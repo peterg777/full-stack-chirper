@@ -1,37 +1,34 @@
 import * as React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
+import {BrowserRouter,Switch, Route} from 'react-router-dom';
 import Home from './pages/Home';
 import Details from './pages/Details';
-import Edit from './pages/Edit';
+import Admin from './pages/Admin';
+import Compose from './pages/Compose';
 
+const App: React.FC<AppProps> = (props) => {
+    return (
+        <BrowserRouter>
+		<Switch>
+			<Route exact path="/">
+				<Home />
+			</Route>
+			<Route exact path="/chirps/details/:chirpid">
+				<Details/>
+			</Route>
+			<Route exact path="/chirps/admin/:chirpid">
+				<Admin/>
+			</Route>
+			<Route exact path="/compose">
+				<Compose/>
+			</Route>
 
-class App extends React.Component<AppProps> {
-	render() {
-
-		return (
-			<BrowserRouter>
-				<Container>
-					<Switch>
-						<Route exact path="/" component={Home} />
-
-						<Route exact path="/chirps/details/:chirpid" component={Details} />
-
-						<Route exact path="/chirps/edit/:chirpid" component={Edit} />
-
-					</Switch>
-				</Container>
-			</BrowserRouter>
-
-
-		);
-
-	}
-
+			
+		</Switch>
+		</BrowserRouter>
+    );
 }
 
-export interface AppProps { }
 
-
+interface AppProps { }
 
 export default App;

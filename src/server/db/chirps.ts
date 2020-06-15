@@ -1,8 +1,8 @@
 import { Query } from './index';
 
-const all = () => Query('SELECT * FROM chirps, JOIN users ON users.id = chirps.userid ORDER BY chirps.id;');
+const all = () => Query('SELECT chirps.*, users.name FROM chirps JOIN users ON users.id = chirps.userid ORDER BY chirps.id;');
 
-const one = (id:number) => Query('SELECT chirps.*, users.username FROM chirps JOIN users ON users.id = chirps.userid WHERE chirps.id = ?', [id])
+const one = (id:number) => Query('SELECT chirps.*, users.name FROM chirps JOIN users ON users.id = chirps.userid WHERE chirps.id = ?', [id])
 
 const insert = (userid: number, content: string) => Query('INSERT INTO chirps (userid, content) VALUE (?,?)', [userid, content])
 

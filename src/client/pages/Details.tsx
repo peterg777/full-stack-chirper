@@ -1,10 +1,17 @@
+
 import * as React from 'react';
-// import ChirpDetails from '../components/ChirpDetails'
+import {useParams} from 'react-router-dom';
 
-class Details extends React.Component<DetailsProps>{
-
+const Details: React.FC<DetailsProps> = (props) => {
+    const{chirpid} = useParams()
+    return (
+        <div>
+            <h1 className="text-center">Details Page {chirpid}</h1>
+        </div>
+    );
 }
 
-interface DetailsProps{}
+
+interface DetailsProps { }
 
 export default Details;

@@ -94,7 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar index_1 = __webpack_require__(/*! ./index */ \"./src/server/db/index.ts\");\r\nvar all = function () { return index_1.Query('SELECT * FROM chirps'); };\r\nvar one = function (id) { return index_1.Query('SELECT * FROM chirps WHERE id=?', [id]); };\r\nvar insert = function (userid, content) { return index_1.Query('INSERT INTO chirps (userid, content) VALUE (?,?)', [userid, content]); };\r\nvar update = function (content, id) { return index_1.Query('update chirps set content = ? where id=?;', [content, id]); };\r\nvar destroy = function (id) { return index_1.Query('delete from chirps where id=?', [id]); };\r\nexports.default = {\r\n    all: all,\r\n    one: one,\r\n    insert: insert,\r\n    update: update,\r\n    destroy: destroy\r\n};\r\n\n\n//# sourceURL=webpack:///./src/server/db/chirps.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar index_1 = __webpack_require__(/*! ./index */ \"./src/server/db/index.ts\");\r\nvar all = function () { return index_1.Query('SELECT chirps.*, users.name FROM chirps JOIN users ON users.id = chirps.userid ORDER BY chirps.id;'); };\r\nvar one = function (id) { return index_1.Query('SELECT chirps.*, users.name FROM chirps JOIN users ON users.id = chirps.userid WHERE chirps.id = ?', [id]); };\r\nvar insert = function (userid, content) { return index_1.Query('INSERT INTO chirps (userid, content) VALUE (?,?)', [userid, content]); };\r\nvar update = function (content, id) { return index_1.Query('update chirps set content = ? where id=?;', [content, id]); };\r\nvar destroy = function (id) { return index_1.Query('delete from chirps where id=?', [id]); };\r\nexports.default = {\r\n    all: all,\r\n    one: one,\r\n    insert: insert,\r\n    update: update,\r\n    destroy: destroy\r\n};\r\n\n\n//# sourceURL=webpack:///./src/server/db/chirps.ts?");
 
 /***/ }),
 
@@ -142,7 +142,7 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nva
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar express = __webpack_require__(/*! express */ \"express\");\r\nvar routes_1 = __webpack_require__(/*! ./routes */ \"./src/server/routes/index.ts\");\r\nvar app = express();\r\napp.use(express.static('public'));\r\napp.use(express.json());\r\napp.use('/api', routes_1.default);\r\nvar port = process.env.PORT || 3000;\r\napp.listen(port, function () { return console.log(\"Server listening on port: \" + port); });\r\n__webpack_require__(/*! ./db */ \"./src/server/db/index.ts\");\r\n\n\n//# sourceURL=webpack:///./src/server/server.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar express = __webpack_require__(/*! express */ \"express\");\r\nvar routes_1 = __webpack_require__(/*! ./routes */ \"./src/server/routes/index.ts\");\r\nvar path = __webpack_require__(/*! path */ \"path\");\r\nvar app = express();\r\napp.use(express.static('public'));\r\napp.use(express.json());\r\napp.use('/api', routes_1.default);\r\napp.use('*', function (req, res) {\r\n    res.sendFile(path.join(__dirname, '../public/index.html'));\r\n});\r\nvar port = process.env.PORT || 3000;\r\napp.listen(port, function () { return console.log(\"Server listening on port: \" + port); });\r\n\n\n//# sourceURL=webpack:///./src/server/server.ts?");
 
 /***/ }),
 
@@ -165,6 +165,17 @@ eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///externa
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"mysql\");\n\n//# sourceURL=webpack:///external_%22mysql%22?");
+
+/***/ }),
+
+/***/ "path":
+/*!***********************!*\
+  !*** external "path" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"path\");\n\n//# sourceURL=webpack:///external_%22path%22?");
 
 /***/ })
 
