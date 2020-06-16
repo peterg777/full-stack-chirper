@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useParams} from 'react-router-dom';
 
-const Admin: React.FC<TemplateProps> = (props) => {
+const Admin: React.FC<AdminProps> = (props) => {
     const{chirpid} = useParams();
     return (
         <div>
@@ -11,6 +11,6 @@ const Admin: React.FC<TemplateProps> = (props) => {
 }
 
 
-interface TemplateProps { }
+interface AdminProps {}
 
 export default Admin;
