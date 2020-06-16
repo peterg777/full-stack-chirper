@@ -9,7 +9,7 @@ const Navbar:React.FC<NavbarProps> = (props)=>{
                     <h3 className="text-dark">Welcome to FullStack Chirps</h3>
                 </Link>
                 <Link className="btn btn-outline-success" to="/">Home</Link>
-                <Link className="btn btn-outline-success" to="./compose">Compose Chirp!</Link>
+                
             </nav>
 
         )

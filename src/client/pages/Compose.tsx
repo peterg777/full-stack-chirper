@@ -1,5 +1,5 @@
 import * as React from 'react';
-import e from 'express';
+
 
 const Compose: React.FC<ComposeProps> = (props) => {
     const [userid, setuserid] = React.useState('')
@@ -19,7 +19,7 @@ const Compose: React.FC<ComposeProps> = (props) => {
         <form>
             <input value={userid} onChange={e=>setuserid(e.target.value)} />
             <input value={content} onChange={e=>setcontent(e.target.value)} />
-            <button></button>
+            <button className="btn btn-success mt-3" type="submit" onClick={handleSubmit}>Add Chirp At Your Own Risk!</button>
         </form>
     )
 }

@@ -3,6 +3,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { IChirp } from '../utils/interfaces';
+import DetailsCard from '../components/DetailsCard';
 
 
 
@@ -21,12 +22,13 @@ const Details: React.FC<DetailsProps> = () => {
             <h1>
                 {chirp?.content}
             </h1>
-            {/* <DetailsCard key={`detailscard-${chirp?.id}`} chirp={chirp} /> */}
+            <DetailsCard key={`detailscard-${chirp?.id}`} chirp={chirp} />
         </section>
     );
 
 }
 
 interface DetailsProps { }
+
 
 export default Details;

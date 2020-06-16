@@ -1,8 +1,9 @@
 import * as React from 'react';
+import {useState, useEffect} from 'react';
 import type { IChirp } from '../utils/interfaces';
 import ChirpCard from '../components/ChirpCard';
 
-const Home: React.FC<HomeProps> = (props) => {
+const Home: React.FC<HomeProps> = () => {
     const [chirps, setChirps] = React.useState<IChirp[]>([])
 
     React.useEffect(() => {
@@ -10,6 +11,11 @@ const Home: React.FC<HomeProps> = (props) => {
             .then(res => res.json())
             .then(chirps => setChirps(chirps))
     }, [])
+
+    useEffect(() => {
+        setChirps();
+
+    },[setChirps]);
 
     return (
         <section className="row justify-content-center">
