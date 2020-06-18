@@ -12,13 +12,14 @@ const Home: React.FC<HomeProps> = () => {
             .then(chirps => setChirps(chirps))
     }, [])
 
-    useEffect(() => {
-        setChirps();
+    // useEffect(() => {
+    //     setChirps();
 
-    },[setChirps]);
+    // },[setChirps]);
 
     return (
         <section className="row justify-content-center">
+            <img src="http://www.citiesmods.com/wp-content/uploads/2017/12/Chirper-HQ.jpg"/>
             {chirps.map(chirp => <ChirpCard key={`chirpcard-${chirp.id}`} chirp={chirp} />)}
         </section>
     );
