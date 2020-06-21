@@ -1,12 +1,13 @@
 import * as React from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams,useHistory} from 'react-router-dom';
 import { Form, Col, Button } from 'react-bootstrap';
 import {useEffect} from 'react';
 
 
-const Admin: React.FC<AdminProps> = (props) => {
+const Admin: React.FC<AdminProps> = () => {
 
-    const { chirpid } = useParams();
+	const { chirpid } = useParams();
+	const history = useHistory();
 
 
     const [userid, setuserid] = React.useState('')
@@ -29,11 +30,10 @@ const Admin: React.FC<AdminProps> = (props) => {
         fetch(`/api/chirps/${chirpid}`, {
             method: "DELETE",
         })
-        if (res.ok) {
-			this.props.history.push('/');
-		} else {
-			console.log('Deleted!');
-		}
+		.then(() => this.props.history.push('/'))
+		.then(res => res.json())
+		.then(chirps => this.useState({ chirps }))
+		.catch(err => console.log(err))
 	}
     useEffect(() => {
 		(async () => {
@@ -46,11 +46,12 @@ const Admin: React.FC<AdminProps> = (props) => {
     
     return (
         <Col md={8}>
+            <img src="http://www.citiesmods.com/wp-content/uploads/2017/12/Chirper-HQ-2.jpg"/>
+
 			<Form className="p-3 my-3 shadow-sm">
 				<Form.Group controlId="formSelectUser">
 					<Form.Label>Chirp As:</Form.Label>
 					<Form.Control 
-						type="text"
 						value={userid} 
 						onChange={e=>setuserid(e.target.value)} 
 						className="shadow-sm">
@@ -59,7 +60,6 @@ const Admin: React.FC<AdminProps> = (props) => {
 				<Form.Group controlId="formTextArea">
 					<Form.Label>Edit Chirp:</Form.Label>
 					<Form.Control 
-						as="textarea"
 						value={content}
 						onChange={e=>setcontent(e.target.value)}  
 						className="shadow-sm"
@@ -67,8 +67,8 @@ const Admin: React.FC<AdminProps> = (props) => {
 					/>
   			</Form.Group>
 				<div className="d-flex justify-content-around">
-					<Button onClick={handleSubmit} variant="outline-primary" className="w-25 shadow-sm">Save It!</Button>
-					<Button onClick={handleDelete} variant="outline-danger" className="w-25 shadow-sm">Delete It!</Button>
+					<Button onClick={handleSubmit} variant="outline-primary" className="w-25 shadow-sm">Save !</Button>
+					<Button onClick={handleDelete} variant="outline-danger" className="w-25 shadow-sm">Destroy Me!</Button>
 				</div>
 			</Form>
 		</Col>
