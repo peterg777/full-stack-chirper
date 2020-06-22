@@ -10,18 +10,18 @@ const Admin: React.FC<AdminProps> = () => {
 	const history = useHistory();
 
 
-    const [userid, setuserid] = React.useState('')
+	const [userid, setuserid] = React.useState('')
     const [content, setcontent] = React.useState('')
-    const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
-        e.preventDefault()
-        fetch('/api/chirps', {
-            method: "PUT",
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ userid, content })
-        }).then(() => this.props.history.push('/'))
-    }
+    // const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
+    //     e.preventDefault()
+    //     fetch('/api/chirps', {
+    //         method: "PUT",
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ userid, content })
+    //     }).then(() => this.props.history.push('/'))
+    // }
 
 
     const handleDelete = (e: React.FormEvent<HTMLElement>) => {
@@ -43,7 +43,7 @@ const Admin: React.FC<AdminProps> = () => {
 			setcontent(chirp.content);
 		})();
 	}, [chirpid]);
-    
+
     return (
         <Col md={8}>
             <img src="http://www.citiesmods.com/wp-content/uploads/2017/12/Chirper-HQ-2.jpg"/>
