@@ -10,36 +10,31 @@ const Admin: React.FC<AdminProps> = () => {
 	const history = useHistory();
 
 
-	const [userid, setuserid] = React.useState('')
     const [content, setcontent] = React.useState('')
-    // const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
-    //     e.preventDefault()
-    //     fetch('/api/chirps', {
-    //         method: "PUT",
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify({ userid, content })
-    //     }).then(() => this.props.history.push('/'))
-    // }
+    const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
+        e.preventDefault()
+        fetch(`/api/chirps/${chirpid}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ content })
+        }).then(() => history.push('/'))
+    }
 
 
     const handleDelete = (e: React.FormEvent<HTMLElement>) => {
-        const{chirpid} = useParams()
         e.preventDefault()
         fetch(`/api/chirps/${chirpid}`, {
             method: "DELETE",
         })
-		.then(() => this.props.history.push('/'))
-		.then(res => res.json())
-		.then(chirps => this.useState({ chirps }))
+		.then(() => history.push('/'))
 		.catch(err => console.log(err))
 	}
     useEffect(() => {
 		(async () => {
 			let res = await fetch(`/api/chirps/${chirpid}`);
-			let chirp = await res.json();
-			setuserid(chirp.userid);
+			let chirp = await res.json();				
 			setcontent(chirp.content);
 		})();
 	}, [chirpid]);
@@ -49,14 +44,6 @@ const Admin: React.FC<AdminProps> = () => {
             <img src="http://www.citiesmods.com/wp-content/uploads/2017/12/Chirper-HQ-2.jpg"/>
 
 			<Form className="p-3 my-3 shadow-sm">
-				<Form.Group controlId="formSelectUser">
-					<Form.Label>Chirp As:</Form.Label>
-					<Form.Control 
-						value={userid} 
-						onChange={e=>setuserid(e.target.value)} 
-						className="shadow-sm">
-					</Form.Control>
-				</Form.Group>
 				<Form.Group controlId="formTextArea">
 					<Form.Label>Edit Chirp:</Form.Label>
 					<Form.Control 

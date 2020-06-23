@@ -1,8 +1,10 @@
 import * as React from 'react';
+import {useHistory} from 'react-router-dom';
 
 
 
-const Compose:React.FC<ComposeProps> = () => {
+const Compose:React.FC<ComposeProps> = (props) => {
+    const history = useHistory()
     const [userid, setuserid] = React.useState('')
     const [content, setcontent] = React.useState('')
     const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
@@ -13,7 +15,7 @@ const Compose:React.FC<ComposeProps> = () => {
                 'content-type': 'application/json'
             },
             body: JSON.stringify({ userid, content })
-        }).then(() => this.props.history.push('/'))
+        }).then(() => history.push('/'))
     }
   
     return (

@@ -10,7 +10,7 @@ const ChirpCard: React.FC<ChirpCardProps> = ({chirp}) => {
         <Col as="article" md={7}>
 			<Card className="shadow-sm my-2">
 				<Card.Body>
-					<Card.Title>@{chirp.userid}:</Card.Title>
+					<Card.Title>@{chirp.name}:</Card.Title>
 					<Card.Text>{chirp.content}</Card.Text>
 					<Link to={`/chirps/details/${chirp.id}`} className="btn btn-sm btn-outline-primary shadow-sm">Get Details</Link>
 				</Card.Body>
